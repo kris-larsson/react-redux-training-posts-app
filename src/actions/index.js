@@ -1,10 +1,15 @@
 import axios from 'axios';
 
-export function fetchUsers() {
-    const request = axios.get('http://jsonplaceholder.typicode.com/users');
+export const FETCH_POSTS = 'fetch_posts'
 
-    return (dispatch) {
-        request.then(({data}) =>
-            dispatch({ type: 'FETCH_PROFILES', payload: data })
-    });
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
+const API_KEY = '?key=kriskris';
+
+export function fetchPosts() {
+  const request = axios.get(`${ROOT_URL}/posts${API_KEY}`)
+
+  return {
+    type: FETCH_POSTS,
+    payload: request
+  };
 }
